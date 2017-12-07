@@ -3,7 +3,8 @@
 require 'io/console'
 require 'uri'
 require 'colorize'
-require_relative 'methods'
+require_relative 'audio_methods'
+require_relative 'video_methods'
 
 def prompt(*args)
   print(*args)
@@ -16,7 +17,7 @@ end
 
 def info_request
   intro = "What do you want to download?\n"
-  methods = "\t1) Single audio\n\t2) Playlist audio"
+  methods = "\t1) Single audio\n\t2) Playlist audio\n\t3) Single video\n\t4) Playlist videos"
   choice = "\n\nChoose the number: "
   input = prompt(intro + methods + choice)
   info_answer(input.chomp.to_i)
@@ -25,12 +26,22 @@ end
 def info_answer(input)
   case input
   when 1
-    ask_video_id
+    audio_download
   when 2
     playlist_audio_download
+  when 3
+    video_download
+  when 4
+    ask_for_video_playlist
   else
     puts "You must choice one of the available answer\n".colorize(:red)
     info_request
+  end
+end
+
+def success_message
+  if $?.success?
+    puts "Download successfull\n".colorize(:green)
   end
 end
 
