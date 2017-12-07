@@ -1,12 +1,16 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    childprocess (0.8.0)
+      ffi (~> 1.0, >= 1.0.11)
     colorize (0.8.1)
+    ffi (1.9.18)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  childprocess
   colorize
 
 RUBY VERSION
